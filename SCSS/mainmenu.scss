@@ -1,0 +1,50 @@
+$color1 : rgb(25, 25, 25);
+$color2 : rgb(241, 241, 241);
+$color3 : rgb(239, 239, 39);
+$color4 : rgb(151, 151, 23);
+
+@mixin add-border-black() {
+    border: 5px solid $color1;
+}
+
+@mixin add-border-yellow() {
+    border: 5px solid $color4;
+}
+
+#container-main {
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    align-content: space-evenly;
+    // @include add-border();
+    a{
+        font-size: larger;
+    }
+    #container-button{
+        height: 50vh;
+        display: grid;
+        width: 80%;
+        grid-template-columns: 30% 30%;
+        grid-template-rows: 30% 30%;
+        justify-content: center;
+        column-gap: 5%;
+        row-gap: 5%;
+        align-content: center; 
+        form {
+            button {
+                background-color: $color3;
+                @include add-border-black(); 
+                width: 100%;
+                height: 100%;           
+                border-radius: 3%;
+                font-size: larger;
+            }    
+            // @include add-border();
+        }
+    }
+}
+
+button:hover {
+    transform: scale(1.04);
+}   
