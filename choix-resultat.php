@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
 
     <title>Choix resultat</title>
 

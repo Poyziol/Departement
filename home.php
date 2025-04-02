@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $departement = $_SESSION['departement'];
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
 
     <title>Main Menu</title>
 
@@ -21,7 +23,7 @@
 <body>
 
     <?php 
-        include('header.php');
+      include('header.php');
     ?>
 
     <div id="container-main">
@@ -34,7 +36,7 @@
                 <button>Filtrer budgets</button>
             </form>
             <form action="choix-resultat.php">
-                <button>Voir Resultats finacieres</button>
+                <button>Voir Resultats financiers</button>
             </form>
             <form action="formulaire-pdf.php">
                 <button>Voir en PDF</button>

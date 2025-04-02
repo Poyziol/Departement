@@ -13,13 +13,13 @@ INSERT INTO type_categories (nom) VALUES
 -- Insertion des catégories (Recette + Dépense) avec leurs types et descriptions
 INSERT INTO categories (nom, type_categories_id, nature) VALUES
 -- Recettes
-('Recette', 1, 'Recettes urgentes (ex: ventes exceptionnelles)'),
-('Recette', 2, 'Recettes importantes (ex: contrats clients)'),
-('Recette', 3, 'Recettes régulières (ex: abonnements)'),
+('Recette', 1, 'Recettes urgentes'),
+('Recette', 2, 'Recettes importantes'),
+('Recette', 3, 'Recettes régulières'),
 -- Dépenses
-('Depense', 1, 'Dépenses urgentes (ex: réparations critiques)'),
-('Depense', 2, 'Dépenses importantes (ex: investissements)'),
-('Depense', 3, 'Dépenses courantes (ex: fournitures)');
+('Depense', 1, 'Dépenses urgentes'),
+('Depense', 2, 'Dépenses importantes'),
+('Depense', 3, 'Dépenses courantes');
 
 -- Insertion des budgets pour le département "Administration"
 INSERT INTO budgets (departement_id, categorie_id, prevision, realisation, date_periode) VALUES
@@ -43,3 +43,5 @@ INSERT INTO transactions (budget_id, montant, type_categories_id, date_transacti
 (1, 9500.00, 1, '2023-01-15'),  -- Recette Urgente
 (2, 8200.00, 1, '2023-01-20'),   -- Depense Urgente
 (5, 21000.00, 2, '2023-01-10');  -- Depense Importante
+
+
