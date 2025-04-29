@@ -13,6 +13,7 @@ $departements = $stmt->fetchAll();
     <title>Formulaire-PDF</title>
     <link rel="stylesheet" href="css/formulaire.css">
     <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
 </head>
 <body>
 
@@ -23,7 +24,7 @@ $departements = $stmt->fetchAll();
     <div id="container-main">
         <h1>Choix Département pour le PDF</h1>
         <div id="container-input">
-            <form action="pdf.php" method="post">
+            <form action="pdf.php" method="POST">
                 <label for="id-selection"><h3>Choisir un département :</h3></label>
                 <select name="departement" id="id-selection" required>
                     <option value="">-- Sélectionnez --</option>
@@ -31,7 +32,8 @@ $departements = $stmt->fetchAll();
                         <option value="<?= htmlspecialchars($d['id']) ?>"><?= htmlspecialchars($d['nom']) ?></option>
                     <?php endforeach; ?>
                 </select>
-                <button>Valider</button>
+                
+                <button id="retour">Valider</button>
             </form>
         </div>
         <a href="home.php">Retour</a>

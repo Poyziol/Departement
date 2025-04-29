@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/formulaire.css">
     <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
 
     <title>Formulaire-PDF</title>
 
@@ -30,9 +31,9 @@
     <div id="container-main">
         <h1>Choix Departement pour le resultat</h1>
         <div id="container-input">
-            <form action="" method="post">
+            <form action="affichage.php" method="GET">
                 <label for="id-selection"><h3>Veuillez choisir un departement parmis ceux existants</h3></label>
-                <select name="departement" id="id-selection">
+                <select name="departement_id" id="id-selection">
                     <?php 
                         foreach($departements as $d) { ?>
                         <option value="<?= htmlspecialchars($d['id']) ?>"><?= htmlspecialchars($d['nom']) ?></option>

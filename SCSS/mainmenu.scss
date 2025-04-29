@@ -17,12 +17,18 @@ $color4 : rgb(151, 151, 23);
     justify-content:center;
     align-items: center;
     align-content: space-evenly;
+    h1{
+        padding-bottom: 2%;
+    }
+    h3{
+        text-shadow: 0 2px 1px rgb(163, 152, 149);
+    }
     // @include add-border();
     a{
         font-size: larger;
     }
-    #container-button{
-        height: 50vh;
+    .container-button{
+        height: 900px;
         display: grid;
         width: 80%;
         grid-template-columns: 30% 30%;

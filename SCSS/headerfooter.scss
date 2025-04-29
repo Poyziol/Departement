@@ -3,18 +3,10 @@ $color1 : rgb(25, 25, 25);
 $color2 : rgb(241, 241, 241);
 $color3 : rgb(239, 239, 39);
 $color4 : rgb(151, 151, 23);
-
-@mixin add-border-black() {
-    border: 5px solid $color1;
-}
-
-@mixin add-border-yellow() {
-    border: 5px solid $color4;
-}
-
-body {
+*{
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -22,42 +14,97 @@ body {
     height: 75vh;
     h1 {
         text-shadow: 0 2px 1px rgb(255, 255, 0);
+        text-decoration: underline;
     }
 }
 
 
 header {
     background-color: $color1;
-    height: 15vh;
-    @include add-border-yellow();
-    #container-nav {
-        color: $color2;
+    height: 10vh;
+    margin-bottom: 5%;
+    #container-nav{
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
-        h2 {
-            padding-top: 1%;
-        }
-        ul {
+        h2{
+            width:50%;
+            height: 100%;
+            color: white;
             display: flex;
-            list-style: none;
-            padding-top: 7%;
-            gap: 15%;
-            a {
-                color: $color2;
+            align-items: center;
+            justify-content: center;
+        }
+        nav{
+            width:50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            ul{
+                width: 40%;
+                height: 100%;
+                list-style: none;
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                a{
+                    color: white;
+                    font-size: 1.5vw;
+                }
+                a:hover{
+                    color: $color3;
+                    
+                }
             }
         }
+        
     }
+
+    
+}
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 19px;
 }
 
-footer {
-    background-color: $color1;
-    height: 8vh;
-    color: $color2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    @include add-border-yellow();
+footer p {
+    margin: 5px 0;
+    
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #007bff;
+}
+
+.contact {
+    margin-top: 15px;
+}
+
+.contact a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact a:hover {
+    text-decoration: underline;
 }
 
 a::after{

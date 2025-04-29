@@ -4,12 +4,7 @@
     $stmt = $pdo->query("SELECT nom FROM departements");
     $departements = $stmt->fetchAll();
 
-    $departement = $_GET['departement'];
-    if(in_array($departement,$departements))
-    {
-        $_SESSION['departement'] = $departement;
-        header('Location: home.php');
-    }
-
-    header('Location: index.php?num=1');
+    $departement = $_POST['departement'];
+    $_SESSION['departement'] = $departement;
+    header('Location: home.php');
 ?>

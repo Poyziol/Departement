@@ -41,3 +41,5 @@ CREATE TABLE transactions (
     type_categories_id INT REFERENCES type_categories(id) ON DELETE CASCADE,
     date_transaction DATE NOT NULL
 );
+
+

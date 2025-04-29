@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('fpdf186/fpdf.php');
 
 // Connexion à la base de données
@@ -13,44 +14,49 @@ try {
     die("Erreur de connexion : " . $e->getMessage());
 }
 
-// Validation du département (vérifier que c'est un entier valide)
+// Validation du département
 $departement_id = filter_input(INPUT_POST, 'departement', FILTER_VALIDATE_INT);
-
 if (!$departement_id) {
     die("ID de département invalide ou non fourni.");
 }
 
-// ... [Le reste du code inchangé jusqu'à la requête] ...
+// Récupération des données détaillées
+$query_budgets = "
+    SELECT 
+        d.nom as departement,
+        c.nom as categorie,
+        c.nature,
+        b.prevision,
+        b.realisation,
+        b.ecart,
+        b.date_periode
+    FROM budgets b
+    JOIN departements d ON b.departement_id = d.id
+    JOIN categories c ON b.categorie_id = c.id
+    WHERE b.departement_id = ?
+    ORDER BY b.date_periode DESC
+";
 
-// Récupérer les périodes (2 derniers mois)
-$stmt = $pdo->prepare("
-    SELECT DISTINCT date_trunc('month', date_periode) as periode 
-    FROM budgets 
-    WHERE departement_id = ?
-    ORDER BY periode DESC 
-    LIMIT 2
-");
-$stmt->execute([$departement_id]); // ✅ Maintenant $departement_id est un entier
-$periodes = $stmt->fetchAll();
+$stmt = $pdo->prepare($query_budgets);
+$stmt->execute([$departement_id]);
+$budgets = $stmt->fetchAll();
 
-if (count($periodes) < 1) {
-    die("Aucune période trouvée pour ce département.");
-}
+$query_transactions = "
+    SELECT 
+        t.id,
+        t.montant,
+        tc.nom as type_categorie,
+        t.date_transaction
+    FROM transactions t
+    JOIN budgets b ON t.budget_id = b.id
+    JOIN type_categories tc ON t.type_categories_id = tc.id
+    WHERE b.departement_id = ?
+    ORDER BY t.date_transaction DESC
+";
 
-$periode1 = $periodes[0]['periode'] ?? null;
-$periode2 = $periodes[1]['periode'] ?? null;
-
-// Récupérer les catégories
-$stmt = $pdo->query("
-    SELECT c.*, tc.nom as type 
-    FROM categories c
-    JOIN type_categories tc ON c.type_categories_id = tc.id
-");
-$categories = $stmt->fetchAll();
-
-// Organiser par type
-$recettes = array_filter($categories, fn($c) => $c['type'] === 'Recette');
-$depenses = array_filter($categories, fn($c) => $c['type'] === 'Depense');
+$stmt = $pdo->prepare($query_transactions);
+$stmt->execute([$departement_id]);
+$transactions = $stmt->fetchAll();
 
 class PDF extends FPDF
 {
@@ -66,7 +72,7 @@ class PDF extends FPDF
 
         $this->SetFont('Arial','B', 15);
         $this->setTextColor(170,170,170);
-        $this->cell(1,5,'Annee: ',0,1,'R');
+        $this->cell(1,5,'Annee: 2025',0,1,'R');
 
         $this->SetFont('Arial','B',15);
         $this->SetTextColor(0,0,0);
@@ -83,6 +89,58 @@ class PDF extends FPDF
     {
         $this->SetY(-15);
         $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
+    }
+
+    function TableauBudgets($budgets)
+    {
+        $this->SetFont('Arial','B',14);
+        $this->Cell(0, 10, 'Details des Budgets', 0, 1);
+        $this->SetFont('Arial','B',12);
+        
+        // En-têtes
+        $this->Cell(40, 10, 'Departement', 1, 0, 'C');
+        $this->Cell(40, 10, 'Categorie', 1, 0, 'C');
+        $this->Cell(30, 10, 'Nature', 1, 0, 'C');
+        $this->Cell(30, 10, 'Prevision', 1, 0, 'C');
+        $this->Cell(30, 10, 'Realisation', 1, 0, 'C');
+        $this->Cell(30, 10, 'Ecart', 1, 0, 'C');
+        $this->Cell(30, 10, 'Date', 1, 1, 'C');
+        
+        // Données
+        $this->SetFont('Arial','',10);
+        foreach ($budgets as $budget) {
+            $this->Cell(40, 8, $budget['departement'], 1);
+            $this->Cell(40, 8, $budget['categorie'], 1);
+            $this->Cell(30, 8, $budget['nature'], 1);
+            $this->Cell(30, 8, number_format($budget['prevision'], 2), 1, 0, 'R');
+            $this->Cell(30, 8, number_format($budget['realisation'], 2), 1, 0, 'R');
+            $this->Cell(30, 8, number_format($budget['ecart'], 2), 1, 0, 'R');
+            $this->Cell(30, 8, date('d/m/Y', strtotime($budget['date_periode'])), 1, 1, 'C');
+        }
+        $this->Ln(10);
+    }
+
+    function TableauTransactions($transactions)
+    {
+        $this->SetFont('Arial','B',14);
+        $this->Cell(0, 10, 'Details des Transactions', 0, 1);
+        $this->SetFont('Arial','B',12);
+        
+        // En-têtes
+        $this->Cell(30, 10, 'ID', 1, 0, 'C');
+        $this->Cell(50, 10, 'Montant', 1, 0, 'C');
+        $this->Cell(60, 10, 'Type', 1, 0, 'C');
+        $this->Cell(50, 10, 'Date', 1, 1, 'C');
+        
+        // Données
+        $this->SetFont('Arial','',10);
+        foreach ($transactions as $transaction) {
+            $this->Cell(30, 8, $transaction['id'], 1, 0, 'C');
+            $this->Cell(50, 8, number_format($transaction['montant'], 2), 1, 0, 'R');
+            $this->Cell(60, 8, $transaction['type_categorie'], 1);
+            $this->Cell(50, 8, date('d/m/Y', strtotime($transaction['date_transaction'])), 1, 1, 'C');
+        }
+        $this->Ln(10);
     }
 }
 
@@ -102,70 +160,21 @@ $pdf->Cell(40,6,'Entreprise:',0,0,'L');
 $pdf->SetFont('Arial','',13);
 $pdf->Cell(80,6,'SARL&Co',0,1,'L');
 
+// Informations de l'entête
 $pdf->SetFont('Arial','B',13);
 $pdf->SetX(15);
 $pdf->Cell(40,6,'Departement:',0,0,'L');
-$pdf->SetFont('Arial','B',14);
-$pdf->Cell(80,6,'M1-informatique',0,1,'L');
+$pdf->SetFont('Arial','',13);
+$pdf->Cell(80,6,$_SESSION['departement'],0,1,'L');
+$pdf->Ln(15);
 
 $pdf->SetFont('Arial','B',13);
 $pdf->SetX(15);
 $pdf->Cell(40,12,'Resultats obtenues:',0,1,'L');
 $pdf->Ln(10);
 
-// Entêtes du tableau
-$pdf->SetFont('Arial','B',12);
-$pdf->Cell(60, 10, 'Rubrique', 1, 0, 'C');
-$pdf->Cell(40, 10, 'Periodel', 1, 0, 'C');
-$pdf->Cell(40, 10, 'Ecart', 1, 0, 'C');
-$pdf->Cell(40, 10, 'Periode2', 1, 1, 'C');
-
-// Sous-entêtes
-$pdf->SetX(15);
-$pdf->Cell(60, 10, '', 0);
-$pdf->Cell(20, 10, 'Prevision', 1, 0, 'C');
-$pdf->Cell(20, 10, 'Realisation', 1, 0, 'C');
-$pdf->Cell(40, 10, '', 1);
-$pdf->Cell(20, 10, 'Prevision', 1, 0, 'C');
-$pdf->Cell(20, 10, 'Realisation', 1, 1, 'C');
-
-// Solde début (exemple statique)
-$pdf->Cell(60, 10, 'Solde debut', 1);
-$pdf->Cell(20, 10, '1000', 1); // Prévision P1
-$pdf->Cell(20, 10, '800', 1);  // Réalisation P1
-$pdf->Cell(40, 10, '200', 1);  // Écart P1
-$pdf->Cell(20, 10, '900', 1);  // Prévision P2
-$pdf->Cell(20, 10, '700', 1, 1); // Réalisation P2
-
-// Recettes
-$pdf->Cell(60, 10, 'Categorie: Recette', 1, 1);
-foreach ($recettes as $r) {
-    $pdf->Cell(60, 10, $r['nom'], 1);
-    $pdf->Cell(20, 10, $r['prevision'] ?? '-', 1);
-    $pdf->Cell(20, 10, $r['realisation'] ?? '-', 1);
-    $pdf->Cell(40, 10, ($r['prevision'] - $r['realisation']) ?? '-', 1);
-    $pdf->Cell(20, 10, '-', 1); // Période 2 (exemple)
-    $pdf->Cell(20, 10, '-', 1, 1);
-}
-
-// Depenses
-$pdf->Cell(60, 10, 'Categorie: Depense', 1, 1);
-foreach ($depenses as $d) {
-    $pdf->Cell(60, 10, $d['nom'], 1);
-    $pdf->Cell(20, 10, $d['prevision'] ?? '-', 1);
-    $pdf->Cell(20, 10, $d['realisation'] ?? '-', 1);
-    $pdf->Cell(40, 10, ($d['prevision'] - $d['realisation']) ?? '-', 1);
-    $pdf->Cell(20, 10, '-', 1);
-    $pdf->Cell(20, 10, '-', 1, 1);
-}
-
-// Solde fin (exemple)
-$pdf->Cell(60, 10, 'Solde fin', 1);
-$pdf->Cell(20, 10, '1000', 1);
-$pdf->Cell(20, 10, '500', 1);
-$pdf->Cell(40, 10, '500', 1);
-$pdf->Cell(20, 10, '800', 1);
-$pdf->Cell(20, 10, '300', 1, 1);
+$pdf->TableauBudgets($budgets);
+$pdf->TableauTransactions($transactions);
 
 $pdf->Output();
 

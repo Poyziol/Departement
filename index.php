@@ -3,6 +3,7 @@
 
     $stmt = $pdo->query("SELECT id, nom FROM departements");
     $departements = $stmt->fetchAll();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@
         
     <div class="container" id="container">
     	<div class="form-container sign-in-container">
-    		<form action="home.php" method="GET">
+    		<form action="traitement-login.php" method="GET">
     			<h1>Sign in</h1>
     			<div class="social-container">
     				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -31,6 +32,9 @@
                         <option value="<?= $departement['nom'] ?>">
                     <?php } ?>
                 </datalist>
+				<?php if(isset($_GET['num'])) { ?>
+						<p style="color: red;">This departement doesn t exist</p>
+					<?php } ?>
                 <div class="policy">
                     <input type="checkbox" name="policy" id="id-policy">
                     <p> Agreement and privacy policy</p>

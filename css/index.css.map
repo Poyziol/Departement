@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,QAAQ,CAAC;EACP,OAAO,EAAE,YAAY;EACrB,cAAc,EAAE,QAAQ;EACxB,IAAI,EAAE,YAAY;CACnB",
+    "sources": [
+        "../../../dolibarr-21.0.1/htdocs/theme/common/octicons/index.scss"
+    ],
+    "names": [],
+    "file": "index.css"
+}

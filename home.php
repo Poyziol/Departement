@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    $departement = $_SESSION['departement'];
 ?>
 
 <!DOCTYPE html>
@@ -13,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
 
     <title>Main Menu</title>
 
@@ -21,23 +23,39 @@
 <body>
 
     <?php 
-        include('header.php');
+      include('header.php');
     ?>
 
     <div id="container-main">
         <h1>Main Menu</h1>
-        <div id="container-button">
+        <h3>HR (Human Ressources)</h3>
+        <div class="container-button">
             <form action="choix-insertion.php">
-                <button>Insertion</button>
+                <button type="submit">Insertion</button>
             </form>
             <form action="formulaire-filtre.php">
-                <button>Filtrer budgets</button>
+                <button type="submit">Filtrer budgets</button>
             </form>
             <form action="choix-resultat.php">
-                <button>Voir Resultats finacieres</button>
+                <button type="submit">Voir Resultats financiers</button>
             </form>
             <form action="formulaire-pdf.php">
-                <button>Voir en PDF</button>
+                <button type="submit">Voir en PDF</button>
+            </form>
+        </div>
+        <h3>CRM (Customer RelationShip Management)</h3>
+        <div class="container-button">
+            <form action="crm-resultat.php">
+                <button type="submit">Réaction</button>
+            </form>
+            <form action="crm-solution.php">
+                <button type="submit">Action</button>
+            </form>
+        </div>
+        <h3>FM (Financial Management)</h3>
+        <div class="container-button">
+            <form action="fm-recharge">
+                <button type="submit">Recharge</button>
             </form>
         </div>
     </div>

@@ -16,12 +16,20 @@
       align-content: space-evenly;
 }
 
+#container-main h1 {
+  padding-bottom: 2%;
+}
+
+#container-main h3 {
+  text-shadow: 0 2px 1px #a39895;
+}
+
 #container-main a {
   font-size: larger;
 }
 
-#container-main #container-button {
-  height: 50vh;
+#container-main .container-button {
+  height: 900px;
   display: -ms-grid;
   display: grid;
   width: 80%;
@@ -39,7 +47,7 @@
       align-content: center;
 }
 
-#container-main #container-button form button {
+#container-main .container-button form button {
   background-color: #efef27;
   border: 5px solid #191919;
   width: 100%;

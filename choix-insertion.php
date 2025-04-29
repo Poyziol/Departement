@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
+    <link rel="stylesheet" href="fontawsome/css/all.min.css">
 
     <title>Choix insertion</title>
 
@@ -23,11 +24,11 @@
 
     <div id="container-main">
         <h1>Choix type d insertion</h1>
-        <div id="container-button">
+        <div class="container-button">
             <form action="formulaire-insertion.php">
                 <button>Par formulaire</button>
             </form>
-            <form action="formulaire-csv.php">
+            <form action="csv.php">
                 <button>Par CSV</button>
             </form>
         </div>

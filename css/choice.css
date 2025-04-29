@@ -1,0 +1,54 @@
+main {
+  height: 100%;
+}
+
+main .section {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .section .choice-section {
+  width: 25%;
+  height: 50%;
+}
+
+main .section .choice-section form {
+  height: 100%;
+}
+
+main .section .choice-section form .choice-element {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #fff;
+  -webkit-box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 15px;
+}
+
+main .section .choice-section form .choice-element .select-element {
+  width: 100%;
+}
+
+main .section .choice-section form .choice-element .select-element select {
+  width: 100%;
+}
+/*# sourceMappingURL=choice.css.map */
