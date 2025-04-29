@@ -1,34 +1,35 @@
+-- Categories
 INSERT INTO categorie_voiture (nom) VALUES
-('Citadine'),
-('Berline'),
-('SUV'),
-('Classique'),
-('electrique');
+('SUV'), ('Berline'), ('Citadine');
 
+-- Voitures
 INSERT INTO voiture (id_categorie, modele, marque, prix) VALUES
-(1, 'C3', 'Citroen', 17000.00),       -- Citadine
-(4, '2CV', 'Citroen', 9500.00),       -- Classique
-(1, 'Clio V', 'Renault', 18000.00),   -- Citadine
-(1, '208', 'Peugeot', 19000.00),      -- Citadine
-(2, 'Golf 8', 'Volkswagen', 25000.00),-- Berline
-(3, 'Tiguan', 'Volkswagen', 32000.00),-- SUV
-(5, 'Model 3', 'Tesla', 43000.00);    -- Électrique
+(1, 'Rav4', 'Toyota', 35000.00),
+(2, 'Classe C', 'Mercedes', 42000.00),
+(3, '208', 'Peugeot', 20000.00);
 
-
+-- Popularité
 INSERT INTO reaction_client (id_voiture, popularite) VALUES
-(1, 2),  -- C3
-(2, 1),  -- 2CV
-(3, 4),  -- Clio V
-(4, 5),  -- 208
-(5, 3),  -- Golf 8
-(6, 4),  -- Tiguan
-(7, 5);  -- Model 3
+(1, 75),
+(2, 60),
+(3, 90);
 
+-- Types d'actions (liste)
+INSERT INTO liste_action_entreprise (type_action, budget, effet) VALUES
+('Car Show', 5000.00, 15),
+('Promo', 3000.00, 20),
+('Nouveau design', 8000.00, 25);
 
-INSERT INTO action_entreprise (id_voiture, type_action, budget, effet) VALUES
-(1, 'Amelioration design', 3000.00, 4),
-(2, 'Exposition Car Show', 5000.00, 3),
-(3, 'Publicite TV', 7000.00, 5),
-(5, 'Réduction prix 5%', 2000.00, 4),
-(7, 'Campagne Réseaux sociaux', 8000.00, 5);
+-- Actions concrètes sur des voitures
+INSERT INTO action_entreprise (id_voiture, id_liste_action) VALUES
+(1, 1), -- Rav4, Car Show
+(2, 2), -- Classe C, Promo
+(3, 3); -- 208, Nouveau design
 
+-- Transactions
+INSERT INTO transaction_financiere (type_transaction, description, montant, id_action) VALUES
+('Depense', 'Organisation Car Show pour Rav4', 5000.00, 1),
+('Depense', 'Promotion pour Classe C', 3000.00, 2),
+('Depense', 'Design 208 ameliore', 8000.00, 3),
+('Revenu', 'Vente de Rav4', 37000.00, NULL),
+('Revenu', 'Vente de 208', 21000.00, NULL);

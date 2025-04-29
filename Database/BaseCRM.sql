@@ -26,13 +26,19 @@ CREATE TABLE reaction_client(
     popularite INT DEFAULT 0
 );
 
-CREATE TABLE action_entreprise (
+CREATE TABLE liste_action_entreprise(
     id SERIAL PRIMARY KEY,
-    id_voiture INT REFERENCES voiture(id),
     type_action VARCHAR(100), -- Ex: "Car Show", "Promo", "Nouveau design"
     budget NUMERIC(12,2),
     effet INT
 );
+
+CREATE TABLE action_entreprise (
+    id SERIAL PRIMARY KEY,
+    id_voiture INT REFERENCES voiture(id),
+    id_liste_action INT REFERENCES liste_action_entreprise(id)
+);
+
 
 
 
