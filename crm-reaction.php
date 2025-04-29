@@ -1,5 +1,6 @@
 <?php
-require_once('fonction.php'); // Connexion PDO à la base
+    require_once('fonction.php'); 
+    include('connexion.php');
 ?>
 
 <!DOCTYPE html>

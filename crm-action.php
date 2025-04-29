@@ -1,10 +1,13 @@
 <?php
-require_once('fonction.php'); // Connexion à la base
+    require_once('fonction.php');
+    include('connexion.php')
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,5 +66,4 @@ require_once('fonction.php'); // Connexion à la base
     <?php include('footer.php'); ?>
 
 </body>
-
 </html>

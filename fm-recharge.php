@@ -1,4 +1,7 @@
-<?php require_once('fonction.php'); ?>
+<?php 
+    require_once('fonction.php');
+    include('connexion.php') 
+?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -8,6 +11,7 @@
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="fontawsome/css/all.min.css">
+    <link rel="stylesheet" href="css/input.css">
 </head>
 <body>
 
