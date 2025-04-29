@@ -1,0 +1,10 @@
+#container-main {
+    background-image: url('../images/image1.jpg'); /* chemin vers votre image */
+    background-repeat: no-repeat;           /* pas de répétition */
+    background-position: center center;     /* centre l’image */
+    background-size: cover;                 /* l’image couvre le conteneur en conservant son ratio */
+  }
+
+  #container-main {
+    background-attachment: fixed;
+  }

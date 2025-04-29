@@ -16,6 +16,7 @@ include('connexion.php')
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="fontawsome/css/all.min.css">
+    <link rel="stylesheet" href="css/image3.css">
 </head>
 <style>
     .success-message {
