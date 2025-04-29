@@ -3,11 +3,11 @@ INSERT INTO categorie_voiture (nom) VALUES
 ('Berline'),
 ('SUV'),
 ('Classique'),
-('Électrique');
+('electrique');
 
 INSERT INTO voiture (id_categorie, modele, marque, prix) VALUES
-(1, 'C3', 'Citroën', 17000.00),       -- Citadine
-(4, '2CV', 'Citroën', 9500.00),       -- Classique
+(1, 'C3', 'Citroen', 17000.00),       -- Citadine
+(4, '2CV', 'Citroen', 9500.00),       -- Classique
 (1, 'Clio V', 'Renault', 18000.00),   -- Citadine
 (1, '208', 'Peugeot', 19000.00),      -- Citadine
 (2, 'Golf 8', 'Volkswagen', 25000.00),-- Berline
@@ -26,9 +26,9 @@ INSERT INTO reaction_client (id_voiture, popularite) VALUES
 
 
 INSERT INTO action_entreprise (id_voiture, type_action, budget, effet) VALUES
-(1, 'Amélioration design', 3000.00, 4),
+(1, 'Amelioration design', 3000.00, 4),
 (2, 'Exposition Car Show', 5000.00, 3),
-(3, 'Publicité TV', 7000.00, 5),
+(3, 'Publicite TV', 7000.00, 5),
 (5, 'Réduction prix 5%', 2000.00, 4),
 (7, 'Campagne Réseaux sociaux', 8000.00, 5);
 
