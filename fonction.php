@@ -2,7 +2,7 @@
 function pdo(){
     $host = "localhost";
     $user = "postgres";
-    $password = "123";
+    $password = "postgres";
     $dbname = "etp";
     
     try {
@@ -16,6 +16,17 @@ function pdo(){
         die("Erreur de connexion : " . $e->getMessage());
     }
 }
+
+function getSoldeActuel() {
+    $pdo = pdo();
+    $sql = "SELECT COALESCE(SUM(CASE WHEN type_transaction = 'Revenu' THEN montant ELSE -montant END), 0) AS solde_actuel FROM transaction_financiere";
+
+    $stmt = $pdo->query($sql);
+    $result = $stmt->fetch();
+    return $result['solde_actuel'];
+}
+
+
 function listerCategorie() {
     $pdo=pdo();
     $sql = "SELECT * FROM categories";

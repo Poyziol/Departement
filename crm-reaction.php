@@ -1,5 +1,4 @@
 <?php
-    require_once('fonction.php'); 
     include('connexion.php');
 ?>
 

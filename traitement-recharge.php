@@ -8,7 +8,7 @@ if (isset($_POST['montant'])) {
     (
     type_transaction,
     description,
-    montant NUMERIC(12,2)
+    montant
     ) VALUES ('Revenu','Recharge',$montant)");
     header('Location: fm-recharge.php?success=1');
     exit;

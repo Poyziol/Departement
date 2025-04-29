@@ -34,6 +34,8 @@ CREATE TABLE action_entreprise (
     effet INT
 );
 
+
+
 CREATE TABLE transaction_financiere (
     id SERIAL PRIMARY KEY,
     type_transaction VARCHAR(50) CHECK (type_transaction IN ('Depense', 'Revenu')),
