@@ -1,9 +1,18 @@
+CREATE TABLE categorie_voiture(
+    id SERIAL PRIMARY KEY,
+    nom VARCHAR(100)
+);
+
+
 CREATE TABLE voiture (
     id SERIAL PRIMARY KEY,
+    id_categorie INT REFERENCES categorie_voiture(id), 
     modele VARCHAR(100),
     marque VARCHAR(100),
     prix NUMERIC(10,2)
 );
+
+
 
 CREATE TABLE reaction_client(
     id SERIAL PRIMARY KEY,
