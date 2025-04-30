@@ -25,9 +25,12 @@
     <?php endif; ?>
 
     <form action="traitement-recharge.php" method="POST">
-        <label for="montant">Montant à recharger :</label>
-        <input type="number" name="montant" id="montant" step="0.01" required>
-
+        <div class="label-div">
+            <label for="montant">Montant à recharger :</label>
+        </div>
+        <div class="input-div">
+            <input type="number" name="montant" id="montant" step="0.01" required>
+        </div>
         <button type="submit">Valider</button>
     </form>
 </div>
