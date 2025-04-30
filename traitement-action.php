@@ -26,6 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Redirection avec succès
-    header("Location: crm-solution.php?success=1");
+    header("Location: crm-action.php?success=1");
     exit();
 }
