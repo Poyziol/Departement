@@ -27,3 +27,15 @@ CREATE TABLE action_entreprise (
     budget NUMERIC(12,2),
     effet INT
 );
+
+CREATE TABLE transaction_financiere (
+    id SERIAL PRIMARY KEY,
+    type_transaction VARCHAR(50) CHECK (type_transaction IN ('Depense', 'Revenu')),
+    description TEXT,
+    montant NUMERIC(12,2) NOT NULL,
+    date_transaction DATE DEFAULT CURRENT_DATE,
+    id_action INT REFERENCES action_entreprise(id)  -- NULLABLE, si la transaction est liée à une action
+);
+
+
+
