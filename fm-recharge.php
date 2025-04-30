@@ -26,7 +26,7 @@
 
     <form action="traitement-recharge.php" method="POST">
         <div class="label-div">
-            <label for="montant">Montant à recharger :</label>
+            <label for="montant">Montant à recharger (€):</label>
         </div>
         <div class="input-div">
             <input type="number" name="montant" id="montant" step="0.01" required>
