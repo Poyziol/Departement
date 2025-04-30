@@ -19,6 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
 
     //Redirection
-    header("Location: formulaire-insertion-action.php.php?success=1");
+    header("Location: formulaire-insertion-action.php?success=1");
     exit();
 }
