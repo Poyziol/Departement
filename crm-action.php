@@ -1,5 +1,6 @@
 <?php
-require_once('fonction.php'); // Connexion à la base
+    require_once('fonction.php');
+    include('connexion.php')
 ?>
 
 <!DOCTYPE html>
@@ -63,6 +64,6 @@ require_once('fonction.php'); // Connexion à la base
     </div>
 
     <?php include('footer.php'); ?>
-    
+
 </body>
 </html>
