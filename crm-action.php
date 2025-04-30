@@ -56,7 +56,7 @@
 
     <?php include('header.php'); ?>
 
-    <div id="container-main">
+    <div id="container-main" class="form-container">
         <h1>Nouvelle action de l'entreprise</h1>
 
         <?php if (isset($_GET['success'])): ?>

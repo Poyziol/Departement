@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -9,30 +9,35 @@
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="fontawsome/css/all.min.css">
     <link rel="stylesheet" href="css/image3.css">
+    <link rel="stylesheet" href="css/form-style.css">
 </head>
 
 <body>
     <?php include("header.php"); ?>
 
-    <div id="container-main">
+    <div id="container-main" class="form-container">
         <h2>Ajouter une action entreprise</h2>
 
         <?php if (isset($_GET["success"])): ?>
-            <p style="color: green;">✅ Action enregistrée avec succès !</p>
+            <p class="success-message">✅ Action enregistrée avec succès !</p>
         <?php endif; ?>
 
-        <form method="POST" action="traitement-insertion-action.php" style="max-width: 400px;">
-            <label for="type_action">Type d'action :</label><br>
-            <input type="text" id="type_action" name="type_action" required><br><br>
+        <form method="POST" action="traitement-insertion-action.php" class="form-card">
+            <label for="type_action">Type d'action :</label>
+            <input type="text" id="type_action" name="type_action" required>
 
-            <label for="budget">Budget (Ar) :</label><br>
-            <input type="number" step="0.01" id="budget" name="budget" required><br><br>
+            <label for="budget">Budget (Ar) :</label>
+            <input type="number" step="0.01" id="budget" name="budget" required>
 
-            <label for="effet">Effet estimé (en % d’augmentation de clients ou ventes) :</label><br>
-            <input type="number" id="effet" name="effet" required><br><br>
+            <label for="effet">Effet estimé (% de croissance) :</label>
+            <input type="number" id="effet" name="effet" required>
 
-            <button type="submit">Enregistrer</button>
+            <button type="submit">💾 Enregistrer</button>
         </form>
+
+        <div class="form-footer">
+            <a href="choix-action.php" class="btn-back">← Retour</a>
+        </div>
     </div>
 
     <?php include("footer.php"); ?>

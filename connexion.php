@@ -2,7 +2,8 @@
 
 $host = "localhost";
 $user = "postgres";
-$password = "123";
+// $password = "123";
+$password = "postgres";
 $dbname = "etp";
 
 try {
