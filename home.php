@@ -54,7 +54,7 @@
         </div>
         <h3>FM (Financial Management)</h3>
         <div class="container-button">
-            <form action="fm-recharge">
+            <form action="fm-recharge.php">
                 <button type="submit">Recharge</button>
             </form>
         </div>
