@@ -1,6 +1,7 @@
 DROP TABLE transaction_financiere;
 DROP TABLE action_entreprise;
 DROP TABLE reaction_client;
+DROP TABLE liste_action_entreprise;
 DROP TABLE voiture;
 DROP TABLE categorie_voiture;
 
@@ -38,8 +39,6 @@ CREATE TABLE action_entreprise (
     id_voiture INT REFERENCES voiture(id),
     id_liste_action INT REFERENCES liste_action_entreprise(id)
 );
-
-
 
 
 CREATE TABLE transaction_financiere (

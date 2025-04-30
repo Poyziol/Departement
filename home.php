@@ -49,7 +49,7 @@
             <form action="crm-reaction.php">
                 <button type="submit">Réaction</button>
             </form>
-            <form action="crm-action.php">
+            <form action="choix-action.php">
                 <button type="submit">Action</button>
             </form>
         </div>
