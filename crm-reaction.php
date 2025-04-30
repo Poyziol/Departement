@@ -76,8 +76,8 @@
             <h2>Popularité des voitures par catégorie</h2>
             <canvas id="populariteChart" width="<?= max(800, count($labels)*80) ?>" height="400"></canvas>
 
-            <div style="text-align: center">
-                <a href="home.php">Retour</a>
+            <div class="form-footer" style="text-align: center">
+                <a href="choix-action.php" class="btn-back">← Retour</a>
             </div>
 
             <?php 

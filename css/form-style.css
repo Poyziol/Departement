@@ -35,8 +35,8 @@
 
 /* Bouton de soumission */
 .form-card button {
-    background-color: #007bff;
-    color: white;
+    background-color: #efef27;
+    color: black;
     padding: 12px;
     font-size: 1rem;
     border: none;
@@ -46,7 +46,7 @@
 }
 
 .form-card button:hover {
-    background-color: #0056b3;
+    background-color: #cece37;
 }
 
 /* Message de succès */

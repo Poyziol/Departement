@@ -2,8 +2,8 @@
 function pdo(){
     $host = "localhost";
     $user = "postgres";
-    $password = "postgres";
-    // $password = "123";
+    // $password = "postgres";
+    $password = "123";
     $dbname = "etp";
     
     try {

@@ -32,7 +32,9 @@
                 <button>Choisir un departement en particulier</button>
             </form>
         </div>
-        <a href="home.php">Retour</a>
+        <div class="form-footer">
+            <a href="home.php" class="btn-back">← Retour</a>
+        </div>
     </div>
 
     <?php 

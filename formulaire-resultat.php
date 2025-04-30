@@ -42,7 +42,9 @@
                 <button>Valider</button>
             </form>
         </div>
-        <a href="choix-resultat.php">Retour</a>
+        <div class="form-footer">
+            <a href="home.php" class="btn-back">← Retour</a>
+        </div>
     </div>
 
     <?php 

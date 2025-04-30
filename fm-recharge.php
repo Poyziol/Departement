@@ -34,7 +34,9 @@
         <button type="submit">Valider</button>
     </form>
 
-    <a href="home.php">Retour</a>
+    <div class="form-footer">
+        <a href="home.php" class="btn-back">← Retour</a>
+    </div>
 </div>
 
 <?php include('footer.php'); ?>

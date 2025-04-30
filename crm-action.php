@@ -44,8 +44,8 @@
         form button {
             margin-top: 15px;
             padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
+            background-color: #efef27;
+            color: black;
             border: none;
             border-radius: 5px;
         }
@@ -102,7 +102,9 @@
             <button type="submit">Enregistrer l'action</button>
         </form>
 
-        <a href="choix-action.php">Retour</a>
+        <div class="form-footer">
+            <a href="choix-action.php" class="btn-back">← Retour</a>
+        </div>
     </div>
 
     <?php include('footer.php'); ?>

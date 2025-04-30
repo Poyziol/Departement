@@ -54,3 +54,18 @@ $color4 : rgb(151, 151, 23);
 button:hover {
     transform: scale(1.04);
 }   
+
+.form-footer {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .btn-back {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .btn-back:hover {
+    text-decoration: underline;
+  }

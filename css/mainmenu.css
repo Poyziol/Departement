@@ -60,4 +60,19 @@ button:hover {
   -webkit-transform: scale(1.04);
           transform: scale(1.04);
 }
+
+.form-footer {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.btn-back {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.btn-back:hover {
+  text-decoration: underline;
+}
 /*# sourceMappingURL=mainmenu.css.map */
