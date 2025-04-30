@@ -1,35 +1,34 @@
+<?php require_once('fonction.php'); ?>
 
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="fr">
 <head>
-
-<meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Recharge du solde</title>
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="fontawsome/css/all.min.css">
-
-    <title>Recharge</title>
-
 </head>
-
 <body>
 
-    <?php 
-        include('header.php');
-    ?>
+<?php include('header.php'); ?>
 
-    <div id="container-main">
+<div id="container-main">
+    <h1>Recharge du solde</h1>
 
-    </div>
+    <?php if (isset($_GET['success'])): ?>
+        <div class="success-message">✅ Solde rechargé avec succès.</div>
+    <?php endif; ?>
 
-    <?php 
-        include('footer.php');
-    ?>
+    <form action="traitement-recharge.php" method="POST">
+        <label for="montant">Montant à recharger :</label>
+        <input type="number" name="montant" id="montant" step="0.01" required>
+
+        <button type="submit">Valider</button>
+    </form>
+</div>
+
+<?php include('footer.php'); ?>
 
 </body>
-
 </html>

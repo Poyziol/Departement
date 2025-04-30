@@ -1,99 +1,68 @@
 <?php
-    include('connexion.php');
-
-    // Récupération des voitures, groupées par catégorie
-    $sql = "SELECT v.id, v.modele, v.marque, c.nom AS categorie
-            FROM voiture v
-            JOIN categorie_voiture c ON v.id_categorie = c.id
-            ORDER BY c.nom, v.marque, v.modele";
-    $stmt = $pdo->query($sql);
-    $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Récupération de toutes les actions CRM
-    $sql2 = "SELECT id, id_voiture, type_action, budget FROM action_entreprise";
-    $stmt2 = $pdo->query($sql2);
-    $actions = $stmt2->fetchAll(PDO::FETCH_ASSOC);
+require_once('fonction.php'); // Connexion à la base
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Action CRM</title>
     <link rel="stylesheet" href="css/mainmenu.css">
     <link rel="stylesheet" href="css/headerfooter.css">
     <link rel="stylesheet" href="fontawsome/css/all.min.css">
-    <link rel="stylesheet" href="crm-formulaire.css">
-    <title>Action CRM</title>
 </head>
+<style>
+    .success-message {
+        background-color: #d4edda;
+        color: #155724;
+        padding: 10px;
+        margin: 15px 0;
+        border: 1px solid #c3e6cb;
+        border-radius: 5px;
+    }
+</style>
+
 <body>
+
     <?php include('header.php'); ?>
 
     <div id="container-main">
-        <form action="traitement.php" method="get">
-            <div>
-                <label for="car-select">Voiture</label>
-                <select name="voiture" id="car-select">
-                    <option value="">--Choisissez une voiture--</option>
-                    <?php
-                    $currentCategory = '';
-                    foreach ($cars as $car) {
-                        if ($car['categorie'] !== $currentCategory) {
-                            if ($currentCategory !== '') echo '</optgroup>';
-                            $currentCategory = $car['categorie'];
-                            echo '<optgroup label="'.htmlspecialchars($currentCategory).'">';
-                        }
-                        echo '<option value="'. $car['id'] .'">'. htmlspecialchars($car['marque'].' '. $car['modele']) .'</option>';
-                    }
-                    if ($currentCategory !== '') echo '</optgroup>';
-                    ?>
-                </select>
-            </div>
+        <h1>Nouvelle Action de l'entreprise</h1>
+        <?php if (isset($_GET['success'])): ?>
+            <div class="success-message">✅ Action enregistrée avec succès.</div>
+        <?php endif; ?>
 
-            <div>
-                <label for="action-select">Action CRM</label>
-                <select name="action" id="action-select">
-                    <option value="">--Choisissez une action--</option>
-                </select>
-            </div>
+        <form action="traitement-action.php" method="POST">
+            <label for="voiture">Voiture :</label>
+            <select name="id_voiture" id="voiture" required>
+                <option value="">-- Choisir une voiture --</option>
+                <?php
+                $sql = "SELECT id, modele, marque FROM voiture";
+                $stmt = pdo()->query($sql);
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<option value=\"{$row['id']}\">{$row['marque']} {$row['modele']}</option>";
+                }
+                ?>
+            </select><br><br>
 
-            <div>
-                <label for="budget-display">Coût CRM (€)</label>
-                <input type="text" id="budget-display" name="budget" readonly>
-            </div>
+            <label for="type_action">Type d'action :</label>
+            <input type="text" id="type_action" name="type_action" placeholder="Ex: Car Show, Promo..." required><br><br>
 
-            <button type="submit">Valider</button>
+            <label for="budget">Budget (€) :</label>
+            <input type="number" id="budget" name="budget" step="0.01" required><br><br>
+
+            <label for="effet">Effet estimé (+ popularité) :</label>
+            <input type="number" id="effet" name="effet" required><br><br>
+
+            <button type="submit">Enregistrer l'action</button>
         </form>
     </div>
 
-    <script>
-        // Transfert des données PHP vers JavaScript
-        const actions = <?php echo json_encode($actions, JSON_HEX_TAG); ?>;
-
-        // Mise à jour de la liste d'actions en fonction de la voiture sélectionnée
-        document.getElementById('car-select').addEventListener('change', function() {
-            const carId = this.value;
-            const actionSelect = document.getElementById('action-select');
-            actionSelect.innerHTML = '<option value="">--Choisissez une action--</option>';
-            actions.forEach(action => {
-                if (action.id_voiture == carId) {
-                    const opt = document.createElement('option');
-                    opt.value = action.id;
-                    opt.textContent = action.type_action;
-                    opt.dataset.budget = action.budget;
-                    actionSelect.appendChild(opt);
-                }
-            });
-            document.getElementById('budget-display').value = '';
-        });
-
-        // Affichage du budget de l'action sélectionnée
-        document.getElementById('action-select').addEventListener('change', function() {
-            const sel = this.selectedOptions[0];
-            document.getElementById('budget-display').value = sel ? sel.dataset.budget : '';
-        });
-    </script>
-
     <?php include('footer.php'); ?>
+    
 </body>
 </html>
