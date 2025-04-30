@@ -1,3 +1,9 @@
+DROP TABLE transaction_financiere;
+DROP TABLE action_entreprise;
+DROP TABLE reaction_client;
+DROP TABLE voiture;
+DROP TABLE categorie_voiture;
+
 CREATE TABLE categorie_voiture(
     id SERIAL PRIMARY KEY,
     nom VARCHAR(100)
