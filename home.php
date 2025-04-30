@@ -45,10 +45,10 @@
         </div>
         <h3>CRM (Customer RelationShip Management)</h3>
         <div class="container-button">
-            <form action="crm-resultat.php">
+            <form action="crm-reaction.php">
                 <button type="submit">Réaction</button>
             </form>
-            <form action="crm-solution.php">
+            <form action="crm-action.php">
                 <button type="submit">Action</button>
             </form>
         </div>
