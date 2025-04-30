@@ -23,7 +23,16 @@
     ?>
 
     <div  id="container-main">
-
+        <h1>Choix d'Action</h1>
+        <div class="container-button">
+            <form action="insertion.php">
+                <button>Insertion Action</button>
+            </form>
+            <form action="crm-action.php">
+                <button>Faire une Action</button>
+            </form>
+        </div>
+        <a href="home.php">Retour</a>
     </div>
 
     <?php

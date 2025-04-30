@@ -101,6 +101,8 @@
 
             <button type="submit">Enregistrer l'action</button>
         </form>
+
+        <a href="choix-action.php">Retour</a>
     </div>
 
     <?php include('footer.php'); ?>
