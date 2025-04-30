@@ -33,6 +33,8 @@
         </div>
         <button type="submit">Valider</button>
     </form>
+
+    <a href="home.php">Retour</a>
 </div>
 
 <?php include('footer.php'); ?>
