@@ -1,6 +1,6 @@
 INSERT INTO categorie_voiture (nom) VALUES
-('SUV'), ('Berline'), ('Citadine'), ('Coupé'), ('Cabriolet'),
-('Pickup'), ('Monospace'), ('Break'), ('Hybride'), ('Électrique'),
+('SUV'), ('Berline'), ('Citadine'), ('Coupe'), ('Cabriolet'),
+('Pickup'), ('Monospace'), ('Break'), ('Hybride'), ('electrique'),
 ('Utilitaire'), ('Sportive');
 
 
@@ -11,7 +11,7 @@ INSERT INTO voiture (id_categorie, modele, marque, prix) VALUES
 (4, 'Mustang', 'Ford', 45000.00),
 (5, 'Z4', 'BMW', 55000.00),
 (6, 'Hilux', 'Toyota', 33000.00),
-(7, 'Scénic', 'Renault', 27000.00),
+(7, 'Scenic', 'Renault', 27000.00),
 (8, 'Passat SW', 'Volkswagen', 32000.00),
 (9, 'Prius', 'Toyota', 31000.00),
 (10, 'Model 3', 'Tesla', 48000.00),
@@ -31,7 +31,7 @@ INSERT INTO liste_action_entreprise (type_action, budget, effet) VALUES
 ('Promo', 3000.00, 20),
 ('Nouveau design', 8000.00, 25),
 ('Test Drive Event', 4500.00, 18),
-('Publicité TV', 10000.00, 30);
+('Publicite TV', 10000.00, 30);
 
 
 INSERT INTO action_entreprise (id_voiture, id_liste_action) VALUES
@@ -43,12 +43,12 @@ INSERT INTO action_entreprise (id_voiture, id_liste_action) VALUES
 INSERT INTO transaction_financiere (type_transaction, description, montant, id_action) VALUES
 ('Depense', 'Organisation Car Show pour Rav4', 5000.00, 1),
 ('Depense', 'Promotion pour Classe C', 3000.00, 2),
-('Depense', 'Design amélioré pour 208', 8000.00, 3),
+('Depense', 'Design ameliore pour 208', 8000.00, 3),
 ('Depense', 'Promo Mustang', 3000.00, 4),
 ('Depense', 'Car Show Z4', 5000.00, 5),
-('Depense', 'Design Hilux amélioré', 8000.00, 6),
-('Depense', 'Test Drive Scénic', 4500.00, 7),
-('Depense', 'Publicité TV Passat SW', 10000.00, 8),
+('Depense', 'Design Hilux ameliore', 8000.00, 6),
+('Depense', 'Test Drive Scenic', 4500.00, 7),
+('Depense', 'Publicite TV Passat SW', 10000.00, 8),
 ('Depense', 'Car Show Prius', 5000.00, 9),
 ('Depense', 'Promo Model 3', 3000.00, 10),
 ('Depense', 'Nouveau design Partner', 8000.00, 11),
