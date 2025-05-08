@@ -77,7 +77,7 @@
             <canvas id="populariteChart" width="<?= max(800, count($labels)*80) ?>" height="400"></canvas>
 
             <div class="form-footer" style="text-align: center">
-                <a href="choix-action.php" class="btn-back">← Retour</a>
+                <a href="choix-action1.php" class="btn-back">← Retour</a>
             </div>
 
             <?php 
@@ -121,5 +121,6 @@
                     }
                 });
             </script>
+            
         </body>
 </html>

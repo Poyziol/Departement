@@ -2,6 +2,9 @@ DROP TABLE transaction_financiere;
 DROP TABLE action_entreprise;
 DROP TABLE reaction_client;
 DROP TABLE liste_action_entreprise;
+DROP TABLE reaction_client1;
+DROP TABLE categorie_client;
+DROP TABLE reaction_client;
 DROP TABLE voiture;
 DROP TABLE categorie_voiture;
 
@@ -27,6 +30,17 @@ CREATE TABLE reaction_client(
     popularite INT DEFAULT 0
 );
 
+CREATE TABLE categorie_client(
+    id_client SERIAL PRIMARY KEY,
+    categorie VARCHAR(200)
+);
+
+CREATE TABLE reaction_client1(
+    id SERIAL PRIMARY KEY,
+    id_client INT REFERENCES categorie_client(id_client),
+    popularite INT DEFAULT 0
+);
+
 CREATE TABLE liste_action_entreprise(
     id SERIAL PRIMARY KEY,
     type_action VARCHAR(100), -- Ex: "Car Show", "Promo", "Nouveau design"
@@ -49,6 +63,7 @@ CREATE TABLE transaction_financiere (
     date_transaction DATE DEFAULT CURRENT_DATE,
     id_action INT REFERENCES action_entreprise(id)  -- NULLABLE, si la transaction est liée à une action
 );
+
 
 
 

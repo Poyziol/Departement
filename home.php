@@ -46,7 +46,7 @@
         </div>
         <h3>CRM (Customer RelationShip Management)</h3>
         <div class="container-button">
-            <form action="crm-reaction.php">
+            <form action="choix-action1.php">
                 <button type="submit">Réaction</button>
             </form>
             <form action="choix-action.php">
